@@ -1,12 +1,14 @@
-//  Global - No Window !!!
-
-// __dirname - path to current directory
-// __filename - file name
-// require - function to use modules (CommonJS)
-// module - info about current module (file)
-// process - info about env where the program is being executed
-
-console.log("log", __dirname);
-setInterval(() => {
-  console.log("Hello World");
-}, 1000);
+const http = require('http');
+const server = http.createServer((req, res) => {
+    if (req.url === '/') {
+        res.end('Welcome to our home page');
+    }
+    if (req.url === '/about') {
+        res.end('Here is our short history');
+    }
+    res.end(`
+        <h1>Oops!</h1>
+        <p>We can't seem to find the page you are looking for</p>
+        <a href="/">back home</a>
+    `);
+}
